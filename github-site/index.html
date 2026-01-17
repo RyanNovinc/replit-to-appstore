@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI App to App Store Ready | Free Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #18181b;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #22d3ee;
+            --accent-glow: rgba(34, 211, 238, 0.15);
+            --accent-hover: #06b6d4;
+            --border: #27272a;
+            --gradient-1: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Subtle grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 24px;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-cta {
+            font-size: 13px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .badge::before {
+            content: '✦';
+        }
+
+        h1 {
+            font-size: clamp(40px, 8vw, 64px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #fafafa 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px var(--accent-glow);
+        }
+
+        .cta-button::after {
+            content: '→';
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Logos Section */
+        .logos {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logos-label {
+            text-align: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            opacity: 0.6;
+        }
+
+        .logos-grid span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        /* Pain Points Section */
+        .pain-points {
+            padding: 100px 0;
+        }
+
+        .pain-question {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+        }
+
+        .pain-text {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .pain-text strong {
+            color: var(--text-primary);
+        }
+
+        .highlight-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 24px 28px;
+            border-radius: 0 8px 8px 0;
+            margin: 40px 0;
+        }
+
+        .highlight-box p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .highlight-box strong {
+            color: var(--accent);
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+            margin: 0 -24px;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .solution .container {
+            max-width: 800px;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .solution-text {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 48px;
+        }
+
+        /* Benefits List */
+        .benefits-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .benefit-item:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            transform: translateX(4px);
+        }
+
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--accent-glow);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .benefit-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .benefit-text strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 17px;
+        }
+
+        /* Steps Section */
+        .steps {
+            padding: 80px 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 24px;
+            padding: 28px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            opacity: 0.5;
+        }
+
+        .step-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+            margin: 0 -24px;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .testimonial-card {
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .testimonial-quote {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-quote strong {
+            color: var(--text-primary);
+            font-style: normal;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--bg-primary);
+        }
+
+        .testimonial-info {
+            font-size: 14px;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .testimonial-role {
+            color: var(--text-muted);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 48px;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 200px 1fr;
+                gap: 64px;
+            }
+        }
+
+        .about-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h2 {
+            margin-bottom: 16px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .credential-tag {
+            padding: 8px 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+            margin: 0 -24px;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .faq-item {
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(32px, 6vw, 48px);
+            margin-bottom: 16px;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .pain-points, .solution, .steps, .testimonials, .about, .faq, .final-cta {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            .logos-grid {
+                gap: 16px;
+            }
+            
+            .logos-grid span {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .step-item {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .benefit-item {
+                padding: 16px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">AI_APP_TO_APPSTORE</div>
+            <button class="nav-cta" onclick="document.querySelector('.final-cta').scrollIntoView({behavior: 'smooth'})">Start Free Course</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="badge">100% Free Course</div>
+            <h1>Get Your AI-Built App on the iOS App Store</h1>
+            <p class="hero-subtitle">Built something with Replit or Lovable? This free course walks you through every step to submit your app — from downloaded zip to App Store.</p>
+            <a href="#start" class="cta-button">Yes, I Want My App Live</a>
+        </div>
+    </section>
+
+    <section class="logos">
+        <div class="container">
+            <p class="logos-label">Works with apps built on</p>
+            <div class="logos-grid">
+                <span>Replit</span>
+                <span>Lovable</span>
+                <span>Bolt</span>
+                <span>v0.dev</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="pain-points">
+        <div class="container">
+            <p class="pain-question">You built an app with AI. You're proud of it. But now what?</p>
+            
+            <p class="pain-text">You followed the tutorials. You prompted the AI. You watched your app come to life in the browser. It looks real. It works. You can even share a link.</p>
+            
+            <p class="pain-text">But it's not on the App Store. <strong>And the path to get there feels impossible.</strong></p>
+            
+            <p class="pain-text">How do you even download the code? What tools do you need? What's an eas.json? How do you set up App Store Connect? What commands do you run?</p>
+
+            <div class="highlight-box">
+                <p>Here's the truth: <strong>Replit and Lovable are incredible at helping you build apps. But they stop at "here's your code, good luck."</strong></p>
+            </div>
+
+            <p class="pain-text">The gap between "working in browser" and "submitted to App Store" is massive. Scattered documentation. Confusing tools. Apple's ecosystem. It took me months to figure out.</p>
+            
+            <p class="pain-text">This course gives you the complete path.</p>
+        </div>
+    </section>
+
+    <section class="solution">
+        <div class="container">
+            <p class="section-label">The Solution</p>
+            <h2>A complete path from AI-generated code to App Store submission</h2>
+            <p class="solution-text">This free course walks you through every step — from downloading your zip file to submitting to the App Store. No fluff. No theory. Just the exact process that works.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>Set up your development environment</strong>
+                        VS Code, Claude Code, and the tools you actually need
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>Structure your project correctly</strong>
+                        The right file structure and configuration for iOS
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>Navigate Apple's ecosystem</strong>
+                        Apple Developer Account, App Store Connect, bundle IDs — all demystified
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>Configure everything correctly</strong>
+                        eas.json with real values, ready for production build
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>Submit to the App Store</strong>
+                        TestFlight, App Store review — the full submission process
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to actually ship your app?</h2>
+            <p>Get the free course and go from AI-built code to App Store submission.</p>
+            <a href="#start" class="cta-button">Start the Free Course</a>
+        </div>
+    </section>
+
+    <section class="steps">
+        <div class="container">
+            <p class="section-label">What You'll Learn</p>
+            <h2>The complete path from code to App Store</h2>
+            
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Set Up Your Environment</h3>
+                        <p>Download your code, install VS Code, set up Claude Code, and get the right file structure in place.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Configure Your Project</h3>
+                        <p>Install dependencies, run expo prebuild, create eas.json with the correct profiles.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Set Up Apple Developer</h3>
+                        <p>Create your Apple Developer account, set up App Store Connect, get your Apple ID and bundle identifier.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Build & Submit</h3>
+                        <p>Run your production build, submit to TestFlight, and get your app on the App Store. (No Mac? We offer a $20 build service.)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <p class="section-label">From the Community</p>
+            <h2>What people are saying</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"I had no idea where to even start. This course <strong>walked me through every single step</strong> — my app is actually on TestFlight now."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Marcus T.</div>
+                            <div class="testimonial-role">Indie Maker</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"The Claude Code setup alone saved me hours. <strong>Having the exact prompts and file structure</strong> made everything so much faster."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">S</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Sarah K.</div>
+                            <div class="testimonial-role">Non-technical Founder</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"I don't have a Mac so I used the $20 build service. <strong>App was on the App Store within a week.</strong> Couldn't have done it without this."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">J</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">James L.</div>
+                            <div class="testimonial-role">Side Project Builder</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/ryan.jpg" alt="Ryan - Course Creator">
+                </div>
+                <div class="about-text">
+                    <p class="section-label">Who Made This</p>
+                    <h2>Hey, I'm Ryan</h2>
+                    <p>I spent 8 months building my first iOS app from scratch — LifeCompass, a goal-tracking app now live on the App Store. I learned React Native, Expo, AWS, RevenueCat, and every painful step of Apple's submission process.</p>
+                    <p>The hardest part wasn't building the app. It was figuring out how to go from "code on my computer" to "app on the App Store." Scattered docs, cryptic errors, confusing tools. It took months of trial and error.</p>
+                    <p>This free course is everything I wish I had when I started. The exact steps, the right tools, the prompts that work. So you can skip the months of confusion and just ship.</p>
+                    
+                    <div class="credentials">
+                        <span class="credential-tag">📱 App on iOS App Store</span>
+                        <span class="credential-tag">⚛️ React Native + Expo</span>
+                        <span class="credential-tag">🔐 RevenueCat Integration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <p class="section-label">Before You Start</p>
+            <h2>What You'll Need</h2>
+            
+            <div class="benefits-grid" style="margin-top: 32px; margin-bottom: 64px;">
+                <div class="benefit-item">
+                    <div class="benefit-icon">💻</div>
+                    <div class="benefit-text">
+                        <strong>A computer</strong>
+                        Mac, Windows, or Linux — any will work for most of the course
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🤖</div>
+                    <div class="benefit-text">
+                        <strong>Claude Pro subscription</strong>
+                        $20/month — required for Claude Code
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🍎</div>
+                    <div class="benefit-text">
+                        <strong>Apple Developer Account</strong>
+                        $99/year — required to submit to App Store
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <div class="benefit-text">
+                        <strong>A phone with Expo Go</strong>
+                        Free app — to test your app during development
+                    </div>
+                </div>
+            </div>
+
+            <p class="section-label">Questions</p>
+            <h2>Frequently Asked</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <p class="faq-question">Is this really free?</p>
+                    <p class="faq-answer">Yes, the course is completely free. You'll set up some tools along the way — the course walks you through all of it.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">What do I need to get started?</p>
+                    <p class="faq-answer">A computer (Mac, Windows, or Linux), an internet connection, and an app you've built with Replit, Lovable, or similar. The course will walk you through setting up everything else — VS Code, Claude Code, Apple Developer account, etc.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">I built my app with Lovable, not Replit. Will this work?</p>
+                    <p class="faq-answer">It depends on what Lovable generated. If it's a React Native/Expo project, yes. If it's a web app (React + Vite), you'll need to rebuild the UI in React Native first. The course helps you figure out which situation you're in.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">Do I need a Mac?</p>
+                    <p class="faq-answer">For the final production build step, yes — Apple requires it. But if you don't have a Mac, I offer a $20 build service where I run the build for you. Everything else in the course works on any computer.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">How long does this take?</p>
+                    <p class="faq-answer">Most people complete the course in 2-3 hours. After that, Apple's review process takes 1-3 days. So you could have your app live on the App Store within a week of starting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta" id="start">
+        <div class="container">
+            <h2>Your app deserves to be on the App Store</h2>
+            <p>Get the free course and finally ship what you built.</p>
+            <a href="#" class="cta-button">Start the Free Course Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Built by <a href="#">Ryan</a> · Have questions? <a href="#">Get in touch</a></p>
+        </div>
+    </footer>
+</body>
+</html>
