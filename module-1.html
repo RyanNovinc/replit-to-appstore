@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Path | AI App to App Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #18181b;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #22d3ee;
+            --accent-glow: rgba(34, 211, 238, 0.15);
+            --accent-hover: #06b6d4;
+            --border: #27272a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 40px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .progress {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .path-card {
+            text-decoration: none;
+            display: block;
+            padding: 32px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s;
+            margin-bottom: 24px;
+        }
+
+        .path-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(34, 211, 238, 0.15);
+        }
+
+        .info-box {
+            padding: 20px;
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            margin: 48px 0 0 0;
+        }
+
+        .info-box h4 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="course.html" class="back-link">
+            ← Back to Course Hub
+        </a>
+
+        <div class="progress">Module 1 of 4</div>
+        
+        <h1>Choose Your Starting Point</h1>
+        
+        <p style="font-size: 18px; margin: 0 0 48px 0; color: var(--text-secondary);">Before we begin, let's figure out where you're starting from. Pick the option that best describes your situation:</p>
+
+        <!-- Card 1: React Native Ready -->
+        <a href="module-1a.html" class="path-card">
+            <div style="display: flex; align-items: flex-start; gap: 20px;">
+                <div style="font-size: 40px; line-height: 1;">📱</div>
+                <div style="flex: 1;">
+                    <h3 style="color: var(--accent); font-size: 24px; margin-bottom: 12px;">I Have a React Native App</h3>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 16px;">I built my app in Replit using React Native and Expo. My code is ready to deploy.</p>
+                    <div style="margin-top: 16px; color: var(--accent); font-weight: 600; font-size: 14px;">Start here →</div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 2: Web App -->
+        <a href="module-1b.html" class="path-card">
+            <div style="display: flex; align-items: flex-start; gap: 20px;">
+                <div style="font-size: 40px; line-height: 1;">🌐</div>
+                <div style="flex: 1;">
+                    <h3 style="color: var(--accent); font-size: 24px; margin-bottom: 12px;">I Have a Web App</h3>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 16px;">I built a web app (HTML, React, Next.js, etc.) that needs to be converted to React Native.</p>
+                    <div style="margin-top: 16px; color: var(--accent); font-weight: 600; font-size: 14px;">Start here →</div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 3: Starting from Scratch -->
+        <a href="module-1c.html" class="path-card">
+            <div style="display: flex; align-items: flex-start; gap: 20px;">
+                <div style="font-size: 40px; line-height: 1;">✨</div>
+                <div style="flex: 1;">
+                    <h3 style="color: var(--accent); font-size: 24px; margin-bottom: 12px;">Starting from Scratch</h3>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 16px;">I don't have any code yet. I need to build my app from the beginning.</p>
+                    <div style="margin-top: 16px; color: var(--accent); font-weight: 600; font-size: 14px;">Start here →</div>
+                </div>
+            </div>
+        </a>
+
+        <div class="info-box">
+            <h4>💡 Not Sure?</h4>
+            <p>If you built your app in Replit and can run it on your phone using Expo Go, choose option 1. If you're not sure what you have, start with option 3 and we'll help you figure it out.</p>
+        </div>
+    </div>
+</body>
+</html>
