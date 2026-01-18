@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path 1B: Web App Conversion | AI App to App Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #18181b;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #22d3ee;
+            --accent-glow: rgba(34, 211, 238, 0.15);
+            --accent-hover: #06b6d4;
+            --border: #27272a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 32px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            background: var(--accent-glow);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .nav-link.completed {
+            color: var(--text-muted);
+        }
+
+        .nav-link.completed:hover {
+            color: var(--text-secondary);
+        }
+
+        .module-number {
+            font-weight: 700;
+            color: var(--text-muted);
+            min-width: 20px;
+        }
+
+        .nav-link.active .module-number {
+            color: var(--accent);
+        }
+
+        .nav-link.completed .module-number {
+            color: #10b981;
+        }
+
+        .checkmark {
+            color: #10b981;
+            font-size: 16px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 80px 80px 80px 80px;
+            max-width: 1200px;
+        }
+
+        .progress {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .module-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 48px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .content {
+            max-width: 720px;
+        }
+
+        .content h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin: 48px 0 24px 0;
+            color: var(--text-primary);
+        }
+
+        .content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 32px 0 16px 0;
+            color: var(--text-primary);
+        }
+
+        .content p {
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .content ul, .content ol {
+            margin: 24px 0;
+            padding-left: 24px;
+            color: var(--text-secondary);
+        }
+
+        .content li {
+            margin-bottom: 12px;
+        }
+
+        .content a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: var(--accent);
+        }
+
+        .info-box {
+            padding: 20px;
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .info-box h4 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .warning-box {
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box h4 {
+            color: #ef4444;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .warning-box p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+                z-index: 1000;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <a href="index.html" class="logo">← AI to App Store</a>
+        
+        <div class="nav-section">
+            <div class="nav-title">Course Modules</div>
+            <a href="course.html" class="nav-link completed">
+                <span class="checkmark">✓</span>
+                <span class="module-number">00</span>
+                <span>Welcome & Overview</span>
+            </a>
+            <a href="module-1.html" class="nav-link completed">
+                <span class="checkmark">✓</span>
+                <span class="module-number">01</span>
+                <span>Choose Your Path</span>
+            </a>
+            <a href="module-1b.html" class="nav-link active">
+                <span class="module-number">01</span>
+                <span>Environment Setup</span>
+            </a>
+            <a href="module-2.html" class="nav-link">
+                <span class="module-number">02</span>
+                <span>Project Configuration</span>
+            </a>
+            <a href="module-3.html" class="nav-link">
+                <span class="module-number">03</span>
+                <span>Apple Developer Setup</span>
+            </a>
+            <a href="module-4.html" class="nav-link">
+                <span class="module-number">04</span>
+                <span>Build & Submit</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="progress">Module 1 of 4 • Web App Path</div>
+        
+        <h1>Environment Setup</h1>
+        <div class="module-meta">
+            <span>⏱️ 45 minutes</span>
+            <span style="color: var(--text-muted);">•</span>
+            <span>Path: Web App Conversion</span>
+        </div>
+
+        <!-- Module Video -->
+        <div style="max-width: 800px; margin: 0 0 48px 0;">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card);">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: var(--text-muted);">
+                    <p>📹 Path 1B video will appear here</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <p>You have a web app that needs to be converted to React Native for iOS. This path will guide you through the conversion process.</p>
+
+            <div class="warning-box">
+                <h4>⚠️ Important Note</h4>
+                <p>Converting a web app to React Native is complex and may require significant code changes. Some web-specific features won't work on mobile and will need alternatives.</p>
+            </div>
+
+            <h2>Understanding the Difference</h2>
+            <p>Web apps and mobile apps work differently:</p>
+            <ul>
+                <li><strong>Web:</strong> Uses HTML, CSS, runs in browsers</li>
+                <li><strong>React Native:</strong> Uses React components, runs as native iOS app</li>
+            </ul>
+
+            <h2>Conversion Strategy</h2>
+            <p>We'll use Claude to help convert your web app. Here's the approach:</p>
+
+            <h3>Step 1: Assess Your Web App</h3>
+            <p>First, understand what you have:</p>
+            <ul>
+                <li>What framework? (Plain HTML, React, Next.js, etc.)</li>
+                <li>Key features and functionality</li>
+                <li>External dependencies or APIs</li>
+            </ul>
+
+            <h3>Step 2: Set Up React Native Project</h3>
+            <p>Create a new React Native project with Expo:</p>
+
+            <div class="code-block">
+                <code>npx create-expo-app my-app<br>cd my-app</code>
+            </div>
+
+            <h3>Step 3: Use Claude Code to Convert</h3>
+            <p>Open Claude Code in your terminal and ask it to help convert your web code to React Native:</p>
+
+            <div class="info-box">
+                <h4>💡 Example Prompt</h4>
+                <p>"I have a web app built with [your framework]. I need to convert it to React Native with Expo. Here's my main component: [paste code]. Can you help me convert this to React Native?"</p>
+            </div>
+
+            <h2>Common Conversions</h2>
+
+            <h3>HTML → React Native Components</h3>
+            <ul>
+                <li><code>&lt;div&gt;</code> → <code>&lt;View&gt;</code></li>
+                <li><code>&lt;span&gt;</code>, <code>&lt;p&gt;</code> → <code>&lt;Text&gt;</code></li>
+                <li><code>&lt;button&gt;</code> → <code>&lt;Button&gt;</code> or <code>&lt;TouchableOpacity&gt;</code></li>
+                <li><code>&lt;input&gt;</code> → <code>&lt;TextInput&gt;</code></li>
+                <li><code>&lt;img&gt;</code> → <code>&lt;Image&gt;</code></li>
+            </ul>
+
+            <h3>CSS → StyleSheet</h3>
+            <p>React Native doesn't use CSS files. Instead, you use StyleSheet objects:</p>
+
+            <div class="code-block">
+                <code>const styles = StyleSheet.create({<br>  container: {<br>    flex: 1,<br>    backgroundColor: '#fff'<br>  }<br>});</code>
+            </div>
+
+            <h2>Testing Your Conversion</h2>
+            <p>Once Claude helps you convert the code:</p>
+
+            <ol>
+                <li>Install dependencies: <code style="color: var(--accent);">npm install</code></li>
+                <li>Start the dev server: <code style="color: var(--accent);">npx expo start</code></li>
+                <li>Test on your phone with Expo Go</li>
+                <li>Fix any errors with Claude's help</li>
+            </ol>
+
+            <div class="info-box">
+                <h4>✅ When It Works</h4>
+                <p>Once your app runs smoothly in Expo Go on your phone, you're ready to move to the next module where we'll configure it for the App Store.</p>
+            </div>
+
+            <h2>Need Help?</h2>
+            <p>If you get stuck during conversion, ask Claude Code specific questions about:</p>
+            <ul>
+                <li>Error messages you're seeing</li>
+                <li>Specific features that aren't working</li>
+                <li>How to implement mobile-specific alternatives</li>
+            </ul>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-buttons">
+            <a href="module-1.html" class="nav-btn">
+                ← Back to Path Selection
+            </a>
+            <a href="module-2.html" class="nav-btn primary">
+                Next: Project Configuration →
+            </a>
+        </div>
+    </main>
+</body>
+</html>
