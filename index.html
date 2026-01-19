@@ -369,10 +369,6 @@
         /* Steps Section */
         .steps {
             padding: 80px 0;
-            background: var(--bg-secondary);
-            margin: 0 -24px;
-            padding-left: 24px;
-            padding-right: 24px;
         }
 
         .steps-grid {
@@ -420,6 +416,10 @@
         /* What's Next Section */
         .whats-next {
             padding: 80px 0;
+            background: var(--bg-secondary);
+            margin: 0 -24px;
+            padding-left: 24px;
+            padding-right: 24px;
         }
 
         .whats-next-content {
@@ -525,13 +525,18 @@
             color: var(--text-secondary);
         }
 
-        /* FAQ Section */
-        .faq {
+        /* Requirements Section */
+        .requirements {
             padding: 80px 0;
             background: var(--bg-secondary);
             margin: 0 -24px;
             padding-left: 24px;
             padding-right: 24px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
         }
 
         .faq-grid {
@@ -612,7 +617,7 @@
             }
         }
 
-        .hero, .pain-points, .solution, .steps, .whats-next, .about, .faq, .final-cta {
+        .hero, .pain-points, .solution, .steps, .whats-next, .about, .requirements, .faq, .final-cta {
             animation: fadeInUp 0.6s ease-out;
         }
 
@@ -774,12 +779,12 @@
         </div>
     </section>
 
-    <section class="faq">
+    <section class="requirements">
         <div class="container">
             <p class="section-label">Before You Start</p>
             <h2>What You'll Need</h2>
             
-            <div class="benefits-grid" style="margin-top: 32px; margin-bottom: 64px;">
+            <div class="benefits-grid" style="margin-top: 32px;">
                 <div class="benefit-item">
                     <div class="benefit-icon">💻</div>
                     <div class="benefit-text">
@@ -809,7 +814,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
+    <section class="faq">
+        <div class="container">
             <p class="section-label">Questions</p>
             <h2>Frequently Asked</h2>
             
