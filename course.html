@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,247 +22,328 @@
             --border: #27272a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+```
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Space Grotesk', -apple-system, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
+    body {
+        font-family: 'Space Grotesk', -apple-system, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+    }
 
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 80px 20px;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 40px;
+        transition: color 0.3s;
+    }
+
+    .back-link:hover {
+        color: var(--accent);
+    }
+
+    h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        color: var(--text-secondary);
+        margin-bottom: 48px;
+    }
+
+    .section {
+        margin-bottom: 64px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        color: var(--text-primary);
+    }
+
+    .prereq-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .prereq-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+    }
+
+    .check-icon {
+        color: var(--accent);
+        font-size: 20px;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .prereq-content h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .prereq-content p {
+        font-size: 14px;
+        color: var(--text-secondary);
+    }
+
+    .modules-grid {
+        display: grid;
+        gap: 16px;
+    }
+
+    .module-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .module-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+    }
+
+    .module-info {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .module-number {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--accent);
+        min-width: 60px;
+    }
+
+    .module-details h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+    }
+
+    .module-details p {
+        font-size: 14px;
+        color: var(--text-secondary);
+    }
+
+    .module-duration {
+        font-size: 14px;
+        color: var(--text-muted);
+        padding: 6px 12px;
+        background: var(--bg-secondary);
+        border-radius: 6px;
+    }
+
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 36px;
+        background: var(--accent);
+        color: var(--bg-primary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        border-radius: 12px;
+        transition: all 0.3s;
+        margin-top: 32px;
+    }
+
+    .cta-button:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    .arrow {
+        font-size: 20px;
+    }
+
+    .time-estimate {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-bottom: 32px;
+    }
+
+    /* Step-by-Step Guide Section */
+    .guide-section {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 48px;
+        overflow: hidden;
+    }
+
+    .guide-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 20px 24px;
+        cursor: pointer;
+        user-select: none;
+        transition: background 0.2s;
+    }
+
+    .guide-header:hover {
+        background: rgba(34, 211, 238, 0.05);
+    }
+
+    .guide-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .guide-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        flex: 1;
+    }
+
+    .guide-arrow {
+        color: var(--text-secondary);
+        font-size: 12px;
+        transition: transform 0.3s;
+    }
+
+    details[open] .guide-arrow {
+        transform: rotate(180deg);
+    }
+
+    .guide-content {
+        padding: 0 24px 24px 24px;
+        border-top: 1px solid var(--border);
+    }
+
+    details[open] .guide-content {
+        animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            margin-bottom: 40px;
-            transition: color 0.3s;
-        }
-
-        .back-link:hover {
-            color: var(--accent);
+            padding: 40px 20px;
         }
 
         h1 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 32px;
+            text-align: center;
         }
 
         .subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 48px;
-        }
-
-        .section {
-            margin-bottom: 64px;
+            font-size: 16px;
+            text-align: center;
         }
 
         .section-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            color: var(--text-primary);
-        }
-
-        .prereq-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .prereq-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .check-icon {
-            color: var(--accent);
             font-size: 20px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .prereq-content h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .prereq-content p {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .modules-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        .module-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .module-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .module-info {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .module-number {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--accent);
-            min-width: 60px;
-        }
-
-        .module-details h3 {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .module-details p {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .module-duration {
-            font-size: 14px;
-            color: var(--text-muted);
-            padding: 6px 12px;
-            background: var(--bg-secondary);
-            border-radius: 6px;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 36px;
-            background: var(--accent);
-            color: var(--bg-primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            border-radius: 12px;
-            transition: all 0.3s;
-            margin-top: 32px;
-        }
-
-        .cta-button:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        .arrow {
-            font-size: 20px;
+            text-align: center;
         }
 
         .time-estimate {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 20px;
-            }
-
-            h1 {
-                font-size: 32px;
-                text-align: center;
-            }
-
-            .subtitle {
-                font-size: 16px;
-                text-align: center;
-            }
-
-            .section-title {
-                font-size: 20px;
-                text-align: center;
-            }
-
-            .time-estimate {
-                display: flex;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .module-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-
-            .module-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-
-            /* Ensure CTA button is properly sized on mobile */
-            .cta-button {
-                width: 100%;
-                justify-content: center;
-                font-size: 16px;
-                padding: 16px 24px;
-            }
-
-            /* Module duration on separate line on mobile */
-            .module-duration {
-                align-self: flex-start;
-            }
+        .module-info {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
         }
-        
-    </style>
+
+        .module-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        /* Ensure CTA button is properly sized on mobile */
+        .cta-button {
+            width: 100%;
+            justify-content: center;
+            font-size: 16px;
+            padding: 16px 24px;
+        }
+
+        /* Module duration on separate line on mobile */
+        .module-duration {
+            align-self: flex-start;
+        }
+
+        /* Guide section mobile adjustments */
+        .guide-header {
+            padding: 16px 20px;
+        }
+
+        .guide-content {
+            padding: 0 20px 20px 20px;
+        }
+
+        .guide-title {
+            font-size: 15px;
+        }
+    }
+    
+</style>
+```
+
 </head>
 <body>
     <div class="container">
@@ -269,68 +351,85 @@
             ← Back to home
         </a>
 
-        <h1>Welcome to the Course</h1>
-        <p class="subtitle">Learn how to deploy your AI-built app to the iOS App Store in just a few hours</p>
+```
+    <h1>Welcome to the Course</h1>
+    <p class="subtitle">Learn how to deploy your AI-built app to the iOS App Store in just a few hours</p>
 
-        <!-- Intro Video -->
-        <div style="max-width: 800px; margin: 0 0 48px 0;">
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card);">
-                <iframe 
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;" 
-                    src="https://www.youtube.com/embed/PRFb7t4BRMQ"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-
-        <div class="time-estimate">
-            ⏱️ Total time: 2-3 hours
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">Course Modules</h2>
-            <div class="modules-grid">
-                <a href="module-1.html" class="module-card">
-                    <div class="module-info">
-                        <div class="module-number">01</div>
-                        <div class="module-details">
-                            <h3>Environment Setup</h3>
-                            <p>Install and configure Node.js, Expo CLI, and development tools</p>
-                        </div>
-                    </div>
-                    <span class="module-duration">30 min</span>
-                </a>
-
-                <a href="module-2.html" class="module-card">
-                    <div class="module-info">
-                        <div class="module-number">02</div>
-                        <div class="module-details">
-                            <h3>Project Configuration</h3>
-                            <p>Set up app.json, configure iOS settings, and manage dependencies</p>
-                        </div>
-                    </div>
-                    <span class="module-duration">45 min</span>
-                </a>
-
-                <a href="module-3.html" class="module-card">
-                    <div class="module-info">
-                        <div class="module-number">03</div>
-                        <div class="module-details">
-                            <h3>Apple Developer & Build</h3>
-                            <p>Create certificates, build for production, and submit to App Store</p>
-                        </div>
-                    </div>
-                    <span class="module-duration">1.5 hours</span>
-                </a>
-            </div>
-
-            <a href="module-1.html" class="cta-button">
-                Start Module 1
-                <span class="arrow">→</span>
-            </a>
+    <!-- Intro Video -->
+    <div style="max-width: 800px; margin: 0 0 48px 0;">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card);">
+            <iframe 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;" 
+                src="https://www.youtube.com/embed/nF9uLhocl0U"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
+
+    <div class="time-estimate">
+        ⏱️ Total time: 2-3 hours
+    </div>
+
+    <!-- Step-by-Step Guide Section (Collapsible) -->
+    <details class="guide-section">
+        <summary class="guide-header">
+            <span class="guide-icon">📋</span>
+            <span class="guide-title">Step-by-Step Guide</span>
+            <span class="guide-arrow">▼</span>
+        </summary>
+        <div class="guide-content">
+            <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.7;">
+                Step-by-step written guides are included in each module page below the video. This welcome page is just an introduction—the detailed guides begin with Module 1.
+            </p>
+        </div>
+    </details>
+
+    <div class="section">
+        <h2 class="section-title">Course Modules</h2>
+        <div class="modules-grid">
+            <a href="module-1.html" class="module-card">
+                <div class="module-info">
+                    <div class="module-number">01</div>
+                    <div class="module-details">
+                        <h3>Environment Setup</h3>
+                        <p>Install and configure Node.js, Expo CLI, and development tools</p>
+                    </div>
+                </div>
+                <span class="module-duration">30 min</span>
+            </a>
+
+            <a href="module-2.html" class="module-card">
+                <div class="module-info">
+                    <div class="module-number">02</div>
+                    <div class="module-details">
+                        <h3>Project Configuration</h3>
+                        <p>Set up app.json, configure iOS settings, and manage dependencies</p>
+                    </div>
+                </div>
+                <span class="module-duration">45 min</span>
+            </a>
+
+            <a href="module-3.html" class="module-card">
+                <div class="module-info">
+                    <div class="module-number">03</div>
+                    <div class="module-details">
+                        <h3>Apple Developer & Build</h3>
+                        <p>Create certificates, build for production, and submit to App Store</p>
+                    </div>
+                </div>
+                <span class="module-duration">1.5 hours</span>
+            </a>
+        </div>
+
+        <a href="module-1.html" class="cta-button">
+            Start Module 1
+            <span class="arrow">→</span>
+        </a>
+    </div>
+</div>
+```
+
 </body>
 </html>
