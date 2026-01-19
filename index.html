@@ -417,6 +417,57 @@
             line-height: 1.6;
         }
 
+        /* What's Next Section */
+        .whats-next {
+            padding: 80px 0;
+        }
+
+        .whats-next-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .whats-next-content h2 {
+            margin-bottom: 16px;
+            font-size: clamp(24px, 4vw, 32px);
+        }
+
+        .whats-next-content p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .next-courses {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 32px;
+            text-align: left;
+        }
+
+        .next-course-item {
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .next-course-item strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
         /* About Section */
         .about {
             padding: 100px 0;
@@ -561,7 +612,7 @@
             }
         }
 
-        .hero, .pain-points, .solution, .steps, .about, .faq, .final-cta {
+        .hero, .pain-points, .solution, .steps, .whats-next, .about, .faq, .final-cta {
             animation: fadeInUp 0.6s ease-out;
         }
 
@@ -583,6 +634,10 @@
 
             .benefit-item {
                 padding: 16px 20px;
+            }
+
+            .whats-next-content {
+                padding: 32px 24px;
             }
         }
     </style>
@@ -671,6 +726,29 @@
                         <p>Create your Apple Developer account, set up App Store Connect, build for production, and submit to the App Store.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="whats-next">
+        <div class="container">
+            <div class="whats-next-content">
+                <p class="section-label">After You Ship</p>
+                <h2>What happens after your app goes live?</h2>
+                <p>Getting on the App Store is just the beginning. Turning your app into a real business means monetization, user acquisition, and sustainable growth.</p>
+                
+                <div class="next-courses">
+                    <div class="next-course-item">
+                        <strong>Production Build Mastery</strong>
+                        Learn to create bulletproof production builds, navigate Apple's review requirements, and handle rejections like a pro.
+                    </div>
+                    <div class="next-course-item">
+                        <strong>Revenue & Subscriptions</strong>
+                        Connect RevenueCat to your app, set up App Store Connect for payments, design your storefront, and actually start making money from your users.
+                    </div>
+                </div>
+
+                <p style="margin-top: 24px; font-size: 14px;">Complete this free course first—I'll share details on these advanced topics when you're ready to scale.</p>
             </div>
         </div>
     </section>
