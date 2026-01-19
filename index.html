@@ -476,12 +476,14 @@
         .about-content {
             display: grid;
             gap: 48px;
+            align-items: start;
         }
 
         @media (min-width: 768px) {
             .about-content {
                 grid-template-columns: 200px 1fr;
                 gap: 64px;
+                text-align: left;
             }
         }
 
@@ -617,7 +619,7 @@
             }
         }
 
-        .hero, .pain-points, .solution, .steps, .whats-next, .about, .requirements, .faq, .final-cta {
+        .hero, .pain-points, .solution, .steps, .course-preview, .whats-next, .about, .requirements, .faq, .final-cta {
             animation: fadeInUp 0.6s ease-out;
         }
 
@@ -644,7 +646,56 @@
             .whats-next-content {
                 padding: 32px 24px;
             }
+
+            /* About section - center image on mobile */
+            .about-content {
+                text-align: center;
+            }
+
+            .about-image {
+                margin: 0 auto 32px;
+            }
+
+            .about-text {
+                text-align: left;
+            }
+
+            .credentials {
+                justify-content: center;
+            }
+
+            /* Course preview heading - smaller on mobile */
+            .course-preview h2 {
+                font-size: 28px;
+            }
+
+            .course-preview p {
+                font-size: 15px;
+                padding: 0 16px;
+            }
+
+            /* Reduce padding on mobile sections */
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .pain-points,
+            .steps,
+            .course-preview,
+            .about,
+            .requirements,
+            .faq,
+            .final-cta {
+                padding: 60px 0;
+            }
+
+            /* Make bullet points more readable on mobile */
+            .step-content p {
+                font-size: 14px;
+                line-height: 1.8;
+            }
         }
+        
     </style>
 </head>
 <body>
@@ -661,6 +712,14 @@
             <h1>Get Your AI-Built App on the iOS App Store</h1>
             <p class="hero-subtitle">Built something with Replit or Lovable? This free course walks you through every step to submit your app — from downloaded zip to App Store.</p>
             <a href="course.html" class="cta-button">Yes, I Want My App Live</a>
+        </div>
+    </section>
+
+    <section style="padding: 40px 0; text-align: center;">
+        <div class="container">
+            <p style="font-size: 17px; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                By Module 3, your app will be <strong style="color: var(--accent);">live on TestFlight</strong> and submitted to the App Store for review. Most apps get approved within 24-48 hours.
+            </p>
         </div>
     </section>
 
@@ -711,22 +770,56 @@
                 <div class="step-item">
                     <div class="step-number">01</div>
                     <div class="step-content">
-                        <h3>Set Up Your Environment</h3>
-                        <p>Download your code, install VS Code, set up Claude Code, and get the right file structure in place.</p>
+                        <h3>Environment Setup</h3>
+                        <p>• Install Node.js 18+ and verify installation<br>
+                        • Set up VS Code with recommended extensions<br>
+                        • Configure Claude Code with your API key<br>
+                        • Download and structure your Replit/Lovable export<br>
+                        • Run your first expo start command</p>
                     </div>
                 </div>
                 <div class="step-item">
                     <div class="step-number">02</div>
                     <div class="step-content">
-                        <h3>Configure Your Project</h3>
-                        <p>Install dependencies, run expo prebuild, create eas.json with the correct profiles.</p>
+                        <h3>Project Configuration</h3>
+                        <p>• Install all required dependencies with npm install<br>
+                        • Configure app.json with your bundle identifier<br>
+                        • Run expo prebuild to generate native folders<br>
+                        • Create eas.json with development and production profiles<br>
+                        • Set up environment variables for iOS builds</p>
                     </div>
                 </div>
                 <div class="step-item">
                     <div class="step-number">03</div>
                     <div class="step-content">
-                        <h3>Apple Developer & Build</h3>
-                        <p>Create your Apple Developer account, set up App Store Connect, build for production, and submit to the App Store.</p>
+                        <h3>Apple Developer & App Store Submission</h3>
+                        <p>• Create Apple Developer account ($99/year)<br>
+                        • Set up App Store Connect and create your app listing<br>
+                        • Generate bundle IDs and certificates<br>
+                        • Run production build with eas build --platform ios<br>
+                        • Submit to TestFlight for internal testing<br>
+                        • Navigate App Review and publish to the App Store</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-preview" style="padding: 80px 0;">
+        <div class="container">
+            <p class="section-label">See It In Action</p>
+            <h2>Inside The Course</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;">
+                Watch a preview of how I walk you through the exact technical steps. No fluff, just hands-on instruction.
+            </p>
+            
+            <!-- Course Preview Placeholder - Add a 2-3 min teaching clip when ready -->
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card);">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; display: flex; align-items: center; justify-content: center;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 14px;">
+                            📹 Course Preview (Coming Soon)
+                        </div>
                     </div>
                 </div>
             </div>
@@ -765,9 +858,15 @@
                 <div class="about-text">
                     <p class="section-label">Who Made This</p>
                     <h2>Hey, I'm Ryan</h2>
+                    
                     <p>I spent 8 months building my first iOS app from scratch — LifeCompass, a goal-tracking app now live on the App Store. I learned React Native, Expo, AWS, RevenueCat, and every painful step of Apple's submission process.</p>
                     <p>The hardest part wasn't building the app. It was figuring out how to go from "code on my computer" to "app on the App Store." Scattered docs, cryptic errors, confusing tools. It took months of trial and error.</p>
                     <p>This free course is everything I wish I had when I started. The exact steps, the right tools, the prompts that work, so you can skip the months of confusion and just ship.</p>
+                    
+                    <!-- Proof: App Store Connect Screenshot -->
+                    <div style="margin: 24px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); max-width: 100%;">
+                        <img src="images/app-store-connect.png" alt="LifeCompass in App Store Connect" style="width: 100%; height: auto; display: block;">
+                    </div>
                     
                     <div class="credentials">
                         <span class="credential-tag">📱 App on iOS App Store</span>
