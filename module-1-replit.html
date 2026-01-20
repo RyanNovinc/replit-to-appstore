@@ -269,6 +269,96 @@
             margin: 0;
         }
 
+        /* Screenshot collapsibles - NEW */
+        .screenshot-toggle {
+            margin: 16px 0;
+        }
+
+        .screenshot-toggle summary {
+            cursor: pointer;
+            user-select: none;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: rgba(34, 211, 238, 0.08);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 8px;
+            transition: all 0.2s;
+            gap: 12px;
+        }
+
+        .screenshot-toggle summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .screenshot-toggle summary:hover {
+            background: rgba(34, 211, 238, 0.12);
+            border-color: var(--accent);
+        }
+
+        .screenshot-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .screenshot-icon {
+            font-size: 18px;
+        }
+
+        .expand-indicator {
+            color: var(--text-muted);
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+
+        .screenshot-toggle[open] .expand-indicator {
+            transform: rotate(180deg);
+        }
+
+        .screenshot-toggle[open] summary {
+            margin-bottom: 12px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .screenshot-content {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-top: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .screenshot-content a {
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .screenshot-content img {
+            max-width: 100%;
+            border-radius: 6px;
+            display: block;
+            transition: opacity 0.2s;
+        }
+
+        .screenshot-content a:hover img {
+            opacity: 0.9;
+        }
+
+        .screenshot-hint {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            text-align: center;
+        }
+
         /* Course navigation module links */
         .module-nav-link {
             display: flex;
@@ -418,6 +508,23 @@
                     <code>node --version</code>
                     <div class="output">✓ Expected output: v18.x.x or higher</div>
                 </div>
+
+                <!-- Example Screenshot Toggle -->
+                <details class="screenshot-toggle">
+                    <summary>
+                        <span class="screenshot-label">
+                            <span class="screenshot-icon">📸</span>
+                            <span>View Screenshot Example</span>
+                        </span>
+                        <span class="expand-indicator">▼</span>
+                    </summary>
+                    <div class="screenshot-content">
+                        <a href="images/ryan.jpg" target="_blank">
+                            <img src="images/ryan.jpg" alt="Example terminal output showing node version">
+                        </a>
+                        <p class="screenshot-hint">💡 Tap image to view full size</p>
+                    </div>
+                </details>
 
                 <p>If you don't see a version number, or if it's below v18, download and install Node.js from <a href="https://nodejs.org" target="_blank" style="color: var(--accent);">nodejs.org</a>. Choose the LTS (Long Term Support) version.</p>
 
