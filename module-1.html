@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose Your Path | AI App to App Store</title>
+    <title>Module 1: Environment Setup | AI App to App Store</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0a0a0b;
@@ -55,61 +55,279 @@
             color: var(--accent);
         }
 
-        .progress {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: var(--bg-card);
-            border-radius: 6px;
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-
         h1 {
             font-size: 48px;
             font-weight: 700;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .path-card {
-            text-decoration: none;
-            display: block;
-            padding: 32px;
-            background: var(--bg-card);
-            border: 2px solid var(--border);
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        .module-meta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .video-wrapper {
+            max-width: 800px;
+            margin: 0 0 48px 0;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
             border-radius: 12px;
-            transition: all 0.3s;
-            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
         }
 
-        .path-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(34, 211, 238, 0.15);
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        /* Step-by-Step Guide Section */
+        .guide-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 48px;
+            overflow: hidden;
+        }
+
+        .guide-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 24px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .guide-header:hover {
+            background: rgba(34, 211, 238, 0.05);
+        }
+
+        .guide-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .guide-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .guide-arrow {
+            color: var(--text-secondary);
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+
+        details[open] .guide-arrow {
+            transform: rotate(180deg);
+        }
+
+        .guide-content {
+            padding: 0 24px 24px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        details[open] .guide-content {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .guide-content h3 {
+            color: var(--text-primary);
+            margin: 24px 0 12px 0;
+            font-size: 18px;
+        }
+
+        .guide-content p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .command-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .command-block code {
+            color: var(--accent);
+            font-size: 14px;
+            display: block;
+        }
+
+        .command-block .output {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 8px;
         }
 
         .info-box {
-            padding: 20px;
-            background: var(--bg-card);
-            border-left: 4px solid var(--accent);
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
             border-radius: 8px;
-            margin: 48px 0 0 0;
+            padding: 16px;
+            margin: 16px 0;
         }
 
-        .info-box h4 {
+        .info-box-title {
             color: var(--accent);
+            font-weight: 600;
             margin-bottom: 8px;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .info-box p {
-            margin: 0;
-            font-size: 14px;
             color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
         }
 
+        .error-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .error-box-title {
+            color: #ef4444;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .error-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .checkpoint {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 24px 0;
+        }
+
+        .checkpoint-title {
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .checkpoint p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Course navigation module links */
+        .module-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .module-nav-link:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
             .container {
                 padding: 40px 20px;
@@ -117,6 +335,40 @@
 
             h1 {
                 font-size: 32px;
+                text-align: center;
+            }
+
+            .subtitle {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .module-meta {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .guide-header {
+                padding: 16px 20px;
+            }
+
+            .guide-content {
+                padding: 0 20px 20px 20px;
+            }
+
+            .guide-title {
+                font-size: 15px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-btn {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
         }
     </style>
@@ -124,54 +376,179 @@
 <body>
     <div class="container">
         <a href="course.html" class="back-link">
-            ← Back to Course Hub
+            ← Back to Course
         </a>
 
-        <div class="progress">Module 1 of 4</div>
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 32px;">
+            <div style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-size: 14px;">
+                <span>Course Progress:</span>
+                <span style="color: var(--text-primary); font-weight: 600;">Module 1 of 3</span>
+            </div>
+        </div>
+
+        <h1>Module 1: Environment Setup</h1>
+        <p class="subtitle">Install the tools you need to deploy your app to the iOS App Store</p>
         
-        <h1>Choose Your Starting Point</h1>
-        
-        <p style="font-size: 18px; margin: 0 0 48px 0; color: var(--text-secondary);">Before we begin, let's figure out where you're starting from. Pick the option that best describes your situation:</p>
+        <div class="module-meta">
+            <span>⏱️ 30 minutes</span>
+            <span style="color: var(--text-muted);">•</span>
+            <span>Module 1 of 3</span>
+        </div>
 
-        <!-- Card 1: React Native Ready -->
-        <a href="module-1a.html" class="path-card">
-            <div style="display: flex; align-items: flex-start; gap: 20px;">
-                <div style="font-size: 40px; line-height: 1;">📱</div>
-                <div style="flex: 1;">
-                    <h3 style="color: var(--accent); font-size: 24px; margin-bottom: 12px;">I Have a React Native App</h3>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 16px;">I built my app in Replit using React Native and Expo. My code is ready to deploy.</p>
-                    <div style="margin-top: 16px; color: var(--accent); font-weight: 600; font-size: 14px;">Start here →</div>
-                </div>
+        <!-- Module Video -->
+        <div class="video-wrapper">
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </div>
-        </a>
+        </div>
 
-        <!-- Card 2: Web App -->
-        <a href="module-1b.html" class="path-card">
-            <div style="display: flex; align-items: flex-start; gap: 20px;">
-                <div style="font-size: 40px; line-height: 1;">🌐</div>
-                <div style="flex: 1;">
-                    <h3 style="color: var(--accent); font-size: 24px; margin-bottom: 12px;">I Have a Web App</h3>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 16px;">I built a web app (HTML, React, Next.js, etc.) that needs to be converted to React Native.</p>
-                    <div style="margin-top: 16px; color: var(--accent); font-weight: 600; font-size: 14px;">Start here →</div>
+        <!-- Step-by-Step Guide (Collapsible) -->
+        <details class="guide-section" open>
+            <summary class="guide-header">
+                <span class="guide-icon">📋</span>
+                <span class="guide-title">Step-by-Step Guide</span>
+                <span class="guide-arrow">▼</span>
+            </summary>
+            <div class="guide-content">
+                
+                <p>In this module, we'll install all the tools you need to build and deploy your app to the iOS App Store. Whether you built your app with Replit, Lovable, Bolt, or any other tool, these steps are the same.</p>
+
+                <h3>Step 1: Install Node.js 18+</h3>
+                <p>First, check if Node.js is already installed:</p>
+                
+                <div class="command-block">
+                    <code>node --version</code>
+                    <div class="output">✓ Expected output: v18.x.x or higher</div>
                 </div>
-            </div>
-        </a>
 
-        <!-- Card 3: Starting from Scratch -->
-        <a href="module-1c.html" class="path-card">
-            <div style="display: flex; align-items: flex-start; gap: 20px;">
-                <div style="font-size: 40px; line-height: 1;">✨</div>
-                <div style="flex: 1;">
-                    <h3 style="color: var(--accent); font-size: 24px; margin-bottom: 12px;">Starting from Scratch</h3>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 16px;">I don't have any code yet. I need to build my app from the beginning.</p>
-                    <div style="margin-top: 16px; color: var(--accent); font-weight: 600; font-size: 14px;">Start here →</div>
+                <p>If you don't see a version number, or if it's below v18, download and install Node.js from <a href="https://nodejs.org" target="_blank" style="color: var(--accent);">nodejs.org</a>. Choose the LTS (Long Term Support) version.</p>
+
+                <p>After installing, restart your terminal and run <code style="color: var(--accent); font-family: 'JetBrains Mono', monospace;">node --version</code> again to verify.</p>
+
+                <h3>Step 2: Install Expo CLI</h3>
+                <p>Expo CLI lets you run Expo commands from your terminal. Install it globally:</p>
+
+                <div class="command-block">
+                    <code>npm install -g expo-cli</code>
                 </div>
-            </div>
-        </a>
 
-        <div class="info-box">
-            <h4>💡 Not Sure?</h4>
-            <p>If you built your app in Replit and can run it on your phone using Expo Go, choose option 1. If you're not sure what you have, start with option 3 and we'll help you figure it out.</p>
+                <p>Verify the installation:</p>
+
+                <div class="command-block">
+                    <code>expo --version</code>
+                    <div class="output">✓ Expected output: 6.x.x or higher</div>
+                </div>
+
+                <h3>Step 3: Install EAS CLI</h3>
+                <p>EAS CLI (Expo Application Services) is what creates production builds for the App Store:</p>
+
+                <div class="command-block">
+                    <code>npm install -g eas-cli</code>
+                </div>
+
+                <p>Verify:</p>
+
+                <div class="command-block">
+                    <code>eas --version</code>
+                    <div class="output">✓ Expected output: 5.x.x or higher</div>
+                </div>
+
+                <h3>Step 4: Create Expo Account</h3>
+                <p>You'll need a free Expo account to build your app. Sign up at <a href="https://expo.dev/signup" target="_blank" style="color: var(--accent);">expo.dev/signup</a>, then log in from your terminal:</p>
+
+                <div class="command-block">
+                    <code>eas login</code>
+                </div>
+
+                <p>Enter your Expo username and password when prompted.</p>
+
+                <h3>Step 5: Install VS Code (Optional but Recommended)</h3>
+                <p>Download VS Code from <a href="https://code.visualstudio.com" target="_blank" style="color: var(--accent);">code.visualstudio.com</a>. This is the editor we'll use throughout the course, but you can use any code editor you prefer.</p>
+
+                <h3>Step 6: Install Expo Go on Your Phone</h3>
+                <p>Download the Expo Go app from the App Store (iOS) or Play Store (Android). You'll use this to test your app during development.</p>
+
+                <div class="info-box">
+                    <div class="info-box-title">💡 Tip for Mac Users</div>
+                    <p>If you're on a Mac, you can also install Xcode Command Line Tools now (optional): <code style="color: var(--accent); font-family: 'JetBrains Mono', monospace;">xcode-select --install</code></p>
+                </div>
+
+                <div class="checkpoint">
+                    <div class="checkpoint-title">✅ Verify Your Setup</div>
+                    <p>Run these commands to confirm everything is installed correctly:</p>
+                </div>
+
+                <div class="command-block">
+                    <code>node --version</code>
+                    <code>npm --version</code>
+                    <code>expo --version</code>
+                    <code>eas --version</code>
+                    <code>eas whoami</code>
+                </div>
+
+                <p>If all commands return version numbers (or your Expo username for the last one), you're ready to move on!</p>
+
+                <h3 style="border-top: 1px solid var(--border); padding-top: 24px; margin-top: 32px;">⚠️ Common Issues</h3>
+
+                <div class="error-box">
+                    <div class="error-box-title">Error: "node" is not recognized</div>
+                    <p><strong>Solution:</strong> Restart your terminal after installing Node.js. If that doesn't work, you may need to add Node.js to your system PATH manually. On Windows, try reinstalling Node.js and make sure "Add to PATH" is checked during installation.</p>
+                </div>
+
+                <div class="error-box">
+                    <div class="error-box-title">Error: Permission denied (npm install)</div>
+                    <p><strong>Solution on Mac/Linux:</strong> Try using sudo: <code style="color: var(--accent); font-family: 'JetBrains Mono', monospace;">sudo npm install -g expo-cli</code></p>
+                    <p><strong>Solution on Windows:</strong> Run your terminal as Administrator (right-click → "Run as administrator")</p>
+                </div>
+
+                <div class="error-box">
+                    <div class="error-box-title">Error: Command not found after installation</div>
+                    <p><strong>Solution:</strong> Close your terminal completely and open a new one. The new commands need a fresh terminal session to be recognized.</p>
+                </div>
+
+            </div>
+        </details>
+
+        <!-- Course Navigation -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin: 48px 0;">
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px; color: var(--text-primary);">Course Modules</h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <a href="course.html" class="module-nav-link">
+                    <span style="color: #10b981; font-size: 18px;">✓</span>
+                    <span style="color: var(--text-muted); font-size: 15px;">Welcome & Overview</span>
+                </a>
+                
+                <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); border-radius: 8px;">
+                    <span style="color: var(--accent); font-size: 18px;">→</span>
+                    <span style="color: var(--accent); font-size: 15px; font-weight: 600;">Module 1: Environment Setup (You are here)</span>
+                </div>
+                
+                <a href="module-2.html" class="module-nav-link">
+                    <span style="color: var(--text-muted); font-size: 18px;">○</span>
+                    <span style="color: var(--text-secondary); font-size: 15px;">Module 2: Project Configuration</span>
+                </a>
+                
+                <a href="module-3.html" class="module-nav-link">
+                    <span style="color: var(--text-muted); font-size: 18px;">○</span>
+                    <span style="color: var(--text-secondary); font-size: 15px;">Module 3: Apple Developer & Build</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-buttons">
+            <a href="course.html" class="nav-btn">
+                ← Back to Course
+            </a>
+            <a href="module-2.html" class="nav-btn primary">
+                Next: Project Configuration →
+            </a>
         </div>
     </div>
 </body>
