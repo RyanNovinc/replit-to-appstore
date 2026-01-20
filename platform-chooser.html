@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Platform | AI App to App Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #18181b;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #22d3ee;
+            --accent-glow: rgba(34, 211, 238, 0.15);
+            --accent-hover: #06b6d4;
+            --border: #27272a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Subtle grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+
+        .back-link {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        /* Platform Cards */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 40px 24px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .platform-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .platform-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .platform-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Other Option - Smaller Rectangle */
+        .other-option {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .other-option:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .other-option .platform-icon {
+            font-size: 24px;
+            margin-bottom: 0;
+        }
+
+        .other-option h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .other-option p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .other-text {
+            text-align: left;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Tablet - Keep 2x2 grid */
+        @media (max-width: 768px) and (min-width: 641px) {
+            .platform-grid {
+                gap: 16px;
+            }
+
+            .platform-card {
+                padding: 36px 20px;
+            }
+
+            .other-option {
+                max-width: 400px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .main-content {
+                padding: 60px 0;
+            }
+
+            h1 {
+                font-size: 32px;
+                margin-bottom: 32px;
+            }
+
+            .platform-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .platform-card {
+                padding: 32px 20px;
+            }
+
+            .other-option {
+                padding: 16px 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">AI_APP_TO_APPSTORE</div>
+            <a href="course.html" class="back-link">← Back to Course</a>
+        </div>
+    </nav>
+
+    <section class="main-content">
+        <div class="container">
+            <p class="section-label">Module 1: Step 1</p>
+            <h1>Where did you build your app?</h1>
+
+            <div class="platform-grid">
+                <a href="module-1-replit.html" class="platform-card">
+                    <span class="platform-icon">🔷</span>
+                    <h3>Replit</h3>
+                </a>
+
+                <a href="module-1-lovable.html" class="platform-card">
+                    <span class="platform-icon">💜</span>
+                    <h3>Lovable</h3>
+                </a>
+
+                <a href="module-1-bolt.html" class="platform-card">
+                    <span class="platform-icon">⚡</span>
+                    <h3>Bolt</h3>
+                </a>
+
+                <a href="module-1-v0.html" class="platform-card">
+                    <span class="platform-icon">🔲</span>
+                    <h3>v0.dev</h3>
+                </a>
+            </div>
+
+            <a href="module-1-other.html" class="other-option">
+                <span class="platform-icon">📁</span>
+                <div class="other-text">
+                    <h3>Other</h3>
+                    <p>Different AI tool or platform</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>AI App to App Store - Free Course</p>
+        </div>
+    </footer>
+</body>
+</html>
