@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 3: Apple Developer & Build | AI App to App Store</title>
+    <title>Module 3: Apple Developer &amp; Build | AI App to App Store</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -269,6 +269,161 @@
             margin: 0;
         }
 
+        /* Screenshot Toggle - SMALLER IMAGE SIZE */
+        .screenshot-toggle {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            margin: 24px 0;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .screenshot-toggle:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+        }
+
+        .screenshot-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .screenshot-header:hover {
+            background: rgba(34, 211, 238, 0.05);
+        }
+
+        .screenshot-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .screenshot-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--accent);
+            flex: 1;
+        }
+
+        .screenshot-arrow {
+            color: var(--text-secondary);
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+
+        details[open] .screenshot-arrow {
+            transform: rotate(180deg);
+        }
+
+        .screenshot-content {
+            padding: 0 20px 20px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        details[open] .screenshot-content {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* SMALLER IMAGE - Not overwhelming! */
+        .screenshot-img {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin: 16px auto 0 auto;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: block;
+        }
+
+        .screenshot-img:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+
+        /* Lightbox - FIXED VERSION */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 60px rgba(34, 211, 238, 0.3);
+            cursor: zoom-in;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+            user-select: none;
+            touch-action: none;
+        }
+
+        .lightbox-image.zoomed { cursor: grab; }
+        .lightbox-image.zoomed:active { cursor: grabbing; }
+        .lightbox-image.dragging { transition: none !important; }
+
+        .lightbox-close {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border: none;
+            border-radius: 50%;
+            color: var(--bg-primary);
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent-hover);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-hint {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
         /* Course navigation module links */
         .module-nav-link {
             display: flex;
@@ -370,6 +525,24 @@
                 max-width: 100%;
                 box-sizing: border-box;
             }
+
+            .lightbox-close {
+                top: 16px;
+                right: 16px;
+                width: 44px;
+                height: 44px;
+            }
+
+            .lightbox-hint {
+                bottom: 20px;
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            /* Screenshot stays manageable on mobile */
+            .screenshot-img {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -379,7 +552,7 @@
             ← Back to Module 2
         </a>
 
-        <h1>Module 3: Apple Developer & Build</h1>
+        <h1>Module 3: Apple Developer &amp; Build</h1>
         <p class="subtitle">Create your Apple Developer account, build your app, and submit to the App Store</p>
         
         <div class="module-meta">
@@ -408,7 +581,6 @@
                 <span class="guide-arrow">▼</span>
             </summary>
             <div class="guide-content">
-                
                 <p>This is the final module where we'll build your app for production and submit it to Apple for review. By the end, your app will be live on the App Store.</p>
 
                 <h3>Step 1: Create Apple Developer Account</h3>
@@ -525,6 +697,92 @@
                     <p>After your app is approved, you can update it anytime by incrementing the version number in app.json, running a new build, and submitting again. The update process is the same as the initial submission.</p>
                 </div>
 
+
+            
+
+                <p>After installing, restart your terminal and run <code style="color: var(--accent); font-family: 'JetBrains Mono', monospace;">node --version</code> again to verify.</p>
+
+                <h3>Step 2: Install Expo CLI</h3>
+                <p>Expo CLI lets you run Expo commands from your terminal. Install it globally:</p>
+
+                <div class="command-block">
+                    <code>npm install -g expo-cli</code>
+                </div>
+
+                <p>Verify the installation:</p>
+
+                <div class="command-block">
+                    <code>expo --version</code>
+                    <div class="output">✓ Expected output: 6.x.x or higher</div>
+                </div>
+
+                <h3>Step 3: Install EAS CLI</h3>
+                <p>EAS CLI (Expo Application Services) is what creates production builds for the App Store:</p>
+
+                <div class="command-block">
+                    <code>npm install -g eas-cli</code>
+                </div>
+
+                <p>Verify:</p>
+
+                <div class="command-block">
+                    <code>eas --version</code>
+                    <div class="output">✓ Expected output: 5.x.x or higher</div>
+                </div>
+
+                <h3>Step 4: Create Expo Account</h3>
+                <p>You'll need a free Expo account to build your app. Sign up at <a href="https://expo.dev/signup" target="_blank" style="color: var(--accent);">expo.dev/signup</a>, then log in from your terminal:</p>
+
+                <div class="command-block">
+                    <code>eas login</code>
+                </div>
+
+                <p>Enter your Expo username and password when prompted.</p>
+
+                <h3>Step 5: Install VS Code (Optional but Recommended)</h3>
+                <p>Download VS Code from <a href="https://code.visualstudio.com" target="_blank" style="color: var(--accent);">code.visualstudio.com</a>. This is the editor we'll use throughout the course, but you can use any code editor you prefer.</p>
+
+                <h3>Step 6: Install Expo Go on Your Phone</h3>
+                <p>Download the Expo Go app from the App Store (iOS) or Play Store (Android). You'll use this to test your app during development.</p>
+
+                <div class="info-box">
+                    <div class="info-box-title">💡 Tip for Mac Users</div>
+                    <p>If you're on a Mac, you can also install Xcode Command Line Tools now (optional): <code style="color: var(--accent); font-family: 'JetBrains Mono', monospace;">xcode-select --install</code></p>
+                </div>
+
+                <div class="checkpoint">
+                    <div class="checkpoint-title">✅ Verify Your Setup</div>
+                    <p>Run these commands to confirm everything is installed correctly:</p>
+                </div>
+
+                <div class="command-block">
+                    <code>node --version</code>
+                    <code>npm --version</code>
+                    <code>expo --version</code>
+                    <code>eas --version</code>
+                    <code>eas whoami</code>
+                </div>
+
+                <p>If all commands return version numbers (or your Expo username for the last one), you're ready to move on!</p>
+
+                <h3 style="border-top: 1px solid var(--border); padding-top: 24px; margin-top: 32px;">⚠️ Common Issues</h3>
+
+                <div class="error-box">
+                    <div class="error-box-title">Error: "node" is not recognized</div>
+                    <p><strong>Solution:</strong> Restart your terminal after installing Node.js. If that doesn't work, you may need to add Node.js to your system PATH manually. On Windows, try reinstalling Node.js and make sure "Add to PATH" is checked during installation.</p>
+                </div>
+
+                <div class="error-box">
+                    <div class="error-box-title">Error: Permission denied (npm install)</div>
+                    <p><strong>Solution on Mac/Linux:</strong> Try using sudo: <code style="color: var(--accent); font-family: 'JetBrains Mono', monospace;">sudo npm install -g expo-cli</code></p>
+                    <p><strong>Solution on Windows:</strong> Run your terminal as Administrator (right-click → "Run as administrator")</p>
+                </div>
+
+                <div class="error-box">
+                    <div class="error-box-title">Error: Command not found after installation</div>
+                    <p><strong>Solution:</strong> Close your terminal completely and open a new one. The new commands need a fresh terminal session to be recognized.</p>
+                </div>
+
             </div>
         </details>
 
@@ -533,7 +791,7 @@
             <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px; color: var(--text-primary);">Course Modules</h3>
             
             <div style="display: flex; flex-direction: column; gap: 12px;">
-                <a href="course.html" class="module-nav-link">
+                <a href="module-2.html" class="module-nav-link">
                     <span style="color: #10b981; font-size: 18px;">✓</span>
                     <span style="color: var(--text-muted); font-size: 15px;">Welcome & Overview</span>
                 </a>
@@ -552,6 +810,8 @@
                     <span style="color: var(--accent); font-size: 18px;">→</span>
                     <span style="color: var(--accent); font-size: 15px; font-weight: 600;">Module 3: Apple Developer & Build</span>
                 </div>
+                
+                
             </div>
         </div>
 
@@ -565,5 +825,165 @@
             </a>
         </div>
     </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        </div>
+        <div class="lightbox-hint" id="lightboxHint"></div>
+    </div>
+
+    <script>
+        // FIXED Lightbox - Smooth zoom & pan like native Photos
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxHint = document.getElementById('lightboxHint');
+        
+        let scale = 1;
+        let translateX = 0;
+        let translateY = 0;
+        let isDragging = false;
+        let startX, startY;
+
+        // Detect mobile
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                        ('ontouchstart' in window);
+
+        // Set hint based on device
+        lightboxHint.textContent = isMobile ? 
+            '📱 Pinch to zoom · Tap outside to close' : 
+            '🖱️ Scroll to zoom · Drag to pan · ESC to close';
+
+        // Open lightbox
+        document.querySelectorAll('.screenshot-img').forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImage.src = this.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                resetTransform();
+            });
+        });
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            resetTransform();
+        }
+
+        // Reset transform
+        function resetTransform() {
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            updateTransform(true);
+        }
+
+        // Update transform with smooth transition
+        function updateTransform(smooth = true) {
+            lightboxImage.classList.toggle('dragging', !smooth);
+            lightboxImage.classList.toggle('zoomed', scale > 1);
+            
+            if (scale === 1) {
+                translateX = 0;
+                translateY = 0;
+            }
+            
+            lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        }
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+                closeLightbox();
+            }
+        });
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        // DESKTOP: Mouse wheel zoom
+        if (!isMobile) {
+            lightboxImage.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                scale = Math.min(Math.max(1, scale * delta), 4);
+                updateTransform(true);
+            }, { passive: false });
+
+            // DESKTOP: Mouse drag (only when zoomed)
+            lightboxImage.addEventListener('mousedown', (e) => {
+                if (scale > 1) {
+                    e.preventDefault();
+                    isDragging = true;
+                    startX = e.clientX - translateX;
+                    startY = e.clientY - translateY;
+                }
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && scale > 1) {
+                    translateX = e.clientX - startX;
+                    translateY = e.clientY - startY;
+                    updateTransform(false);
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        }
+
+        // MOBILE: Pinch zoom
+        let initialDistance = 0;
+        let initialScale = 1;
+
+        lightboxImage.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                initialDistance = getDistance(e.touches[0], e.touches[1]);
+                initialScale = scale;
+            } else if (e.touches.length === 1 && scale > 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX - translateX;
+                startY = e.touches[0].clientY - translateY;
+            }
+        }, { passive: false });
+
+        lightboxImage.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const distance = getDistance(e.touches[0], e.touches[1]);
+                scale = Math.min(Math.max(1, initialScale * (distance / initialDistance)), 4);
+                updateTransform(false);
+            } else if (e.touches.length === 1 && isDragging && scale > 1) {
+                e.preventDefault();
+                translateX = e.touches[0].clientX - startX;
+                translateY = e.touches[0].clientY - startY;
+                updateTransform(false);
+            }
+        }, { passive: false });
+
+        lightboxImage.addEventListener('touchend', () => {
+            isDragging = false;
+            if (scale === 1) updateTransform(true);
+        });
+
+        // Helper function
+        function getDistance(t1, t2) {
+            const dx = t1.clientX - t2.clientX;
+            const dy = t1.clientY - t2.clientY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        // Prevent context menu
+        lightboxImage.addEventListener('contextmenu', (e) => e.preventDefault());
+    </script>
 </body>
 </html>
