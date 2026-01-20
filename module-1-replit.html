@@ -751,18 +751,29 @@
         <div class="lightbox-content">
             <img src="" alt="" class="lightbox-image" id="lightboxImage">
         </div>
-        <div class="lightbox-hint">
-            🖱️ Scroll to zoom · 📱 Pinch to zoom · ESC to close
-        </div>
+        <div class="lightbox-hint" id="lightboxHint"></div>
     </div>
 
     <script>
         // Lightbox functionality
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxHint = document.getElementById('lightboxHint');
         let currentScale = 1;
         let isDragging = false;
         let startX, startY, translateX = 0, translateY = 0;
+
+        // Detect if user is on mobile or desktop
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                        ('ontouchstart' in window) || 
+                        (navigator.maxTouchPoints > 0);
+
+        // Set appropriate hint text
+        if (isMobile) {
+            lightboxHint.textContent = '📱 Pinch to zoom · Tap outside to close';
+        } else {
+            lightboxHint.textContent = '🖱️ Scroll to zoom · Drag to pan · ESC to close';
+        }
 
         // Open lightbox when clicking screenshot images
         document.querySelectorAll('.screenshot-img').forEach(img => {
