@@ -269,92 +269,83 @@
             margin: 0;
         }
 
-        /* Screenshot collapsibles - NEW */
+        /* Screenshot Toggle - SMALLER IMAGE SIZE */
         .screenshot-toggle {
-            margin: 16px 0;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            margin: 24px 0;
+            overflow: hidden;
+            transition: all 0.2s;
         }
 
-        .screenshot-toggle summary {
+        .screenshot-toggle:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+        }
+
+        .screenshot-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
             cursor: pointer;
             user-select: none;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            background: rgba(34, 211, 238, 0.08);
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-radius: 8px;
-            transition: all 0.2s;
-            gap: 12px;
+            transition: background 0.2s;
         }
 
-        .screenshot-toggle summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .screenshot-toggle summary:hover {
-            background: rgba(34, 211, 238, 0.12);
-            border-color: var(--accent);
-        }
-
-        .screenshot-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: 500;
+        .screenshot-header:hover {
+            background: rgba(34, 211, 238, 0.05);
         }
 
         .screenshot-icon {
-            font-size: 18px;
+            font-size: 20px;
+            flex-shrink: 0;
         }
 
-        .expand-indicator {
-            color: var(--text-muted);
+        .screenshot-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--accent);
+            flex: 1;
+        }
+
+        .screenshot-arrow {
+            color: var(--text-secondary);
             font-size: 12px;
             transition: transform 0.3s;
         }
 
-        .screenshot-toggle[open] .expand-indicator {
+        details[open] .screenshot-arrow {
             transform: rotate(180deg);
         }
 
-        .screenshot-toggle[open] summary {
-            margin-bottom: 12px;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
         .screenshot-content {
-            padding: 16px;
-            background: var(--bg-secondary);
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-top: none;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
+            padding: 0 20px 20px 20px;
+            border-top: 1px solid var(--border);
         }
 
-        .screenshot-content img {
-            max-width: 100%;
-            border-radius: 6px;
+        details[open] .screenshot-content {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* SMALLER IMAGE - Not overwhelming! */
+        .screenshot-img {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-top: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
             display: block;
-            transition: opacity 0.2s;
         }
 
-        .screenshot-content img:hover {
-            opacity: 0.9;
+        .screenshot-img:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
         }
 
-        .screenshot-hint {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 8px;
-            text-align: center;
-        }
-
-        /* Lightbox Modal - NEW */
+        /* Lightbox - FIXED VERSION */
         .lightbox {
             display: none;
             position: fixed;
@@ -366,40 +357,35 @@
             z-index: 9999;
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
-        .lightbox.active {
-            display: flex;
-            opacity: 1;
-        }
+        .lightbox.active { display: flex; }
 
         .lightbox-content {
             position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox.active .lightbox-content {
-            transform: scale(1);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
         .lightbox-image {
-            max-width: 100%;
+            max-width: 90%;
             max-height: 90vh;
             border-radius: 8px;
             box-shadow: 0 0 60px rgba(34, 211, 238, 0.3);
             cursor: zoom-in;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+            user-select: none;
+            touch-action: none;
         }
 
-        .lightbox-image.zoomed {
-            cursor: zoom-out;
-            transform-origin: center;
-        }
+        .lightbox-image.zoomed { cursor: grab; }
+        .lightbox-image.zoomed:active { cursor: grabbing; }
+        .lightbox-image.dragging { transition: none !important; }
 
         .lightbox-close {
             position: fixed;
@@ -418,7 +404,6 @@
             justify-content: center;
             transition: all 0.2s;
             z-index: 10000;
-            box-shadow: 0 4px 12px rgba(34, 211, 238, 0.4);
         }
 
         .lightbox-close:hover {
@@ -437,21 +422,6 @@
             padding: 12px 24px;
             border-radius: 8px;
             border: 1px solid var(--border);
-        }
-
-        @media (max-width: 768px) {
-            .lightbox-close {
-                top: 16px;
-                right: 16px;
-                width: 44px;
-                height: 44px;
-            }
-
-            .lightbox-hint {
-                font-size: 13px;
-                bottom: 24px;
-                padding: 10px 20px;
-            }
         }
 
         /* Course navigation module links */
@@ -555,6 +525,24 @@
                 max-width: 100%;
                 box-sizing: border-box;
             }
+
+            .lightbox-close {
+                top: 16px;
+                right: 16px;
+                width: 44px;
+                height: 44px;
+            }
+
+            .lightbox-hint {
+                bottom: 20px;
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            /* Screenshot stays manageable on mobile */
+            .screenshot-img {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -604,22 +592,22 @@
                     <div class="output">✓ Expected output: v18.x.x or higher</div>
                 </div>
 
-                <!-- Example Screenshot Toggle -->
+                <p>If you don't see a version number, or if it's below v18, download and install Node.js from <a href="https://nodejs.org" target="_blank" style="color: var(--accent);">nodejs.org</a>. Choose the LTS (Long Term Support) version.</p>
+
+                <!-- Screenshot Example - SMALLER SIZE -->
                 <details class="screenshot-toggle">
-                    <summary>
-                        <span class="screenshot-label">
-                            <span class="screenshot-icon">📸</span>
-                            <span>View Screenshot Example</span>
-                        </span>
-                        <span class="expand-indicator">▼</span>
+                    <summary class="screenshot-header">
+                        <span class="screenshot-icon">📸</span>
+                        <span class="screenshot-label">View Screenshot Example</span>
+                        <span class="screenshot-arrow">▼</span>
                     </summary>
                     <div class="screenshot-content">
-                        <img src="images/ryan.jpg" alt="Example terminal output showing node version" class="screenshot-img" style="cursor: pointer;">
-                        <p class="screenshot-hint">💡 Click image to view fullscreen</p>
+                        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 8px;">
+                            Click the image to view fullscreen with zoom.
+                        </p>
+                        <img src="images/ryan.jpg" alt="Example screenshot" class="screenshot-img">
                     </div>
                 </details>
-
-                <p>If you don't see a version number, or if it's below v18, download and install Node.js from <a href="https://nodejs.org" target="_blank" style="color: var(--accent);">nodejs.org</a>. Choose the LTS (Long Term Support) version.</p>
 
                 <p>After installing, restart your terminal and run <code style="color: var(--accent); font-family: 'JetBrains Mono', monospace;">node --version</code> again to verify.</p>
 
@@ -755,37 +743,33 @@
     </div>
 
     <script>
-        // Lightbox functionality
+        // FIXED Lightbox - Smooth zoom & pan like native Photos
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxHint = document.getElementById('lightboxHint');
-        let currentScale = 1;
+        
+        let scale = 1;
+        let translateX = 0;
+        let translateY = 0;
         let isDragging = false;
-        let startX, startY, translateX = 0, translateY = 0;
+        let startX, startY;
 
-        // Detect if user is on mobile or desktop
+        // Detect mobile
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
-                        ('ontouchstart' in window) || 
-                        (navigator.maxTouchPoints > 0);
+                        ('ontouchstart' in window);
 
-        // Set appropriate hint text
-        if (isMobile) {
-            lightboxHint.textContent = '📱 Pinch to zoom · Tap outside to close';
-        } else {
-            lightboxHint.textContent = '🖱️ Scroll to zoom · Drag to pan · ESC to close';
-        }
+        // Set hint based on device
+        lightboxHint.textContent = isMobile ? 
+            '📱 Pinch to zoom · Tap outside to close' : 
+            '🖱️ Scroll to zoom · Drag to pan · ESC to close';
 
-        // Open lightbox when clicking screenshot images
+        // Open lightbox
         document.querySelectorAll('.screenshot-img').forEach(img => {
             img.addEventListener('click', function() {
                 lightboxImage.src = this.src;
-                lightboxImage.alt = this.alt;
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                currentScale = 1;
-                translateX = 0;
-                translateY = 0;
-                updateImageTransform();
+                resetTransform();
             });
         });
 
@@ -793,131 +777,120 @@
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
-            currentScale = 1;
+            resetTransform();
+        }
+
+        // Reset transform
+        function resetTransform() {
+            scale = 1;
             translateX = 0;
             translateY = 0;
+            updateTransform(true);
+        }
+
+        // Update transform with smooth transition
+        function updateTransform(smooth = true) {
+            lightboxImage.classList.toggle('dragging', !smooth);
+            lightboxImage.classList.toggle('zoomed', scale > 1);
+            
+            if (scale === 1) {
+                translateX = 0;
+                translateY = 0;
+            }
+            
+            lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
         }
 
         // Close on background click
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
                 closeLightbox();
             }
         });
 
-        // Close on ESC key
-        document.addEventListener('keydown', function(e) {
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
             }
         });
 
-        // Zoom with mouse wheel (desktop)
-        lightboxImage.addEventListener('wheel', function(e) {
-            e.preventDefault();
-            const delta = e.deltaY > 0 ? -0.1 : 0.1;
-            currentScale = Math.min(Math.max(1, currentScale + delta), 4);
-            updateImageTransform();
-        });
+        // DESKTOP: Mouse wheel zoom
+        if (!isMobile) {
+            lightboxImage.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                scale = Math.min(Math.max(1, scale * delta), 4);
+                updateTransform(true);
+            }, { passive: false });
 
-        // Zoom on click/double-click
-        lightboxImage.addEventListener('click', function(e) {
-            if (currentScale === 1) {
-                currentScale = 2;
-            } else {
-                currentScale = 1;
-                translateX = 0;
-                translateY = 0;
-            }
-            updateImageTransform();
-        });
+            // DESKTOP: Mouse drag (only when zoomed)
+            lightboxImage.addEventListener('mousedown', (e) => {
+                if (scale > 1) {
+                    e.preventDefault();
+                    isDragging = true;
+                    startX = e.clientX - translateX;
+                    startY = e.clientY - translateY;
+                }
+            });
 
-        // Touch/pinch zoom (mobile)
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && scale > 1) {
+                    translateX = e.clientX - startX;
+                    translateY = e.clientY - startY;
+                    updateTransform(false);
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        }
+
+        // MOBILE: Pinch zoom
         let initialDistance = 0;
         let initialScale = 1;
 
-        lightboxImage.addEventListener('touchstart', function(e) {
+        lightboxImage.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
                 initialDistance = getDistance(e.touches[0], e.touches[1]);
-                initialScale = currentScale;
-            } else if (e.touches.length === 1 && currentScale > 1) {
+                initialScale = scale;
+            } else if (e.touches.length === 1 && scale > 1) {
                 isDragging = true;
                 startX = e.touches[0].clientX - translateX;
                 startY = e.touches[0].clientY - translateY;
             }
         }, { passive: false });
 
-        lightboxImage.addEventListener('touchmove', function(e) {
+        lightboxImage.addEventListener('touchmove', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
                 const distance = getDistance(e.touches[0], e.touches[1]);
-                currentScale = Math.min(Math.max(1, initialScale * (distance / initialDistance)), 4);
-                updateImageTransform();
-            } else if (e.touches.length === 1 && isDragging && currentScale > 1) {
+                scale = Math.min(Math.max(1, initialScale * (distance / initialDistance)), 4);
+                updateTransform(false);
+            } else if (e.touches.length === 1 && isDragging && scale > 1) {
                 e.preventDefault();
                 translateX = e.touches[0].clientX - startX;
                 translateY = e.touches[0].clientY - startY;
-                updateImageTransform();
+                updateTransform(false);
             }
         }, { passive: false });
 
-        lightboxImage.addEventListener('touchend', function() {
+        lightboxImage.addEventListener('touchend', () => {
             isDragging = false;
-            if (currentScale === 1) {
-                translateX = 0;
-                translateY = 0;
-                updateImageTransform();
-            }
+            if (scale === 1) updateTransform(true);
         });
 
-        // Mouse drag (desktop)
-        lightboxImage.addEventListener('mousedown', function(e) {
-            if (currentScale > 1) {
-                e.preventDefault();
-                isDragging = true;
-                startX = e.clientX - translateX;
-                startY = e.clientY - translateY;
-                lightboxImage.style.cursor = 'grabbing';
-            }
-        });
-
-        document.addEventListener('mousemove', function(e) {
-            if (isDragging && currentScale > 1) {
-                translateX = e.clientX - startX;
-                translateY = e.clientY - startY;
-                updateImageTransform();
-            }
-        });
-
-        document.addEventListener('mouseup', function() {
-            isDragging = false;
-            if (currentScale > 1) {
-                lightboxImage.style.cursor = 'grab';
-            } else {
-                lightboxImage.style.cursor = 'zoom-in';
-            }
-        });
-
-        // Helper functions
-        function getDistance(touch1, touch2) {
-            const dx = touch1.clientX - touch2.clientX;
-            const dy = touch1.clientY - touch2.clientY;
+        // Helper function
+        function getDistance(t1, t2) {
+            const dx = t1.clientX - t2.clientX;
+            const dy = t1.clientY - t2.clientY;
             return Math.sqrt(dx * dx + dy * dy);
         }
 
-        function updateImageTransform() {
-            if (currentScale > 1) {
-                lightboxImage.classList.add('zoomed');
-                lightboxImage.style.cursor = 'grab';
-            } else {
-                lightboxImage.classList.remove('zoomed');
-                lightboxImage.style.cursor = 'zoom-in';
-                translateX = 0;
-                translateY = 0;
-            }
-            lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
-        }
+        // Prevent context menu
+        lightboxImage.addEventListener('contextmenu', (e) => e.preventDefault());
     </script>
 </body>
 </html>
