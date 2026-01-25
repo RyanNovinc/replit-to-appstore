@@ -110,21 +110,26 @@
 
         /* Hero Section */
         .hero {
-            padding: 160px 0 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 120px 0 80px;
+            position: relative;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
+            padding: 10px 20px;
             background: var(--accent-glow);
             border: 1px solid rgba(34, 211, 238, 0.2);
             border-radius: 100px;
-            font-size: 13px;
+            font-size: 14px;
             color: var(--accent);
-            margin-bottom: 32px;
+            margin-bottom: 40px;
             font-weight: 500;
         }
 
@@ -133,11 +138,11 @@
         }
 
         h1 {
-            font-size: clamp(40px, 8vw, 64px);
+            font-size: clamp(44px, 9vw, 72px);
             font-weight: 700;
             line-height: 1.1;
             letter-spacing: -2px;
-            margin-bottom: 24px;
+            margin-bottom: 48px;
             background: linear-gradient(180deg, #fafafa 0%, #a1a1aa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -152,11 +157,44 @@
             line-height: 1.7;
         }
 
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 18px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-8px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-4px);
+            }
+        }
+
         .cta-button {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 16px 32px;
+            padding: 18px 36px;
             background: var(--accent);
             color: var(--bg-primary);
             font-size: 16px;
@@ -655,6 +693,221 @@
                 font-size: 14px;
                 line-height: 1.8;
             }
+
+            /* Hero mobile adjustments */
+            .hero {
+                min-height: 90vh;
+                padding: 100px 0 60px;
+            }
+
+            .hero h1 {
+                margin-bottom: 36px;
+            }
+
+            .scroll-indicator {
+                bottom: 24px;
+            }
+        }
+
+        /* Proof Badge */
+        .proof-badge {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(34, 211, 238, 0.08);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            border-radius: 12px;
+            margin-top: 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .proof-badge:hover {
+            background: rgba(34, 211, 238, 0.12);
+            border-color: rgba(34, 211, 238, 0.4);
+            transform: translateX(4px);
+        }
+
+        .proof-badge-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .proof-badge-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .proof-badge-text strong {
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .proof-badge-text span {
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        /* Proof Modal */
+        .proof-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .proof-modal.active {
+            display: flex;
+        }
+
+        .proof-modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .proof-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .proof-modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .proof-modal-content h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .proof-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .proof-stat {
+            text-align: center;
+            padding: 16px 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .proof-stat-number {
+            display: block;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .proof-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .proof-features {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .proof-features p {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .proof-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .proof-features li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .proof-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .proof-appstore-link {
+            display: block;
+            text-align: center;
+            padding: 14px 24px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .proof-appstore-link:hover {
+            background: var(--accent-hover);
+        }
+
+        @media (max-width: 640px) {
+            .proof-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .proof-stats .proof-stat:last-child {
+                grid-column: span 2;
+            }
+
+            .proof-modal-content {
+                padding: 24px;
+            }
         }
         
     </style>
@@ -671,46 +924,34 @@
         <div class="container">
             <div class="badge">100% Free Course</div>
             <h1>How to Build an App with AI<br><span style="font-size: 0.65em;">(Without Getting Ripped Off)</span></h1>
-            <p class="hero-subtitle">Skip Replit, Lovable, and Bolt. Build apps with the actual AI tools they're charging you 5-10x for.</p>
             <a href="course.html" class="cta-button">Start the Free Course</a>
         </div>
-    </section>
-
-    <section style="padding: 40px 0; text-align: center;">
-        <div class="container">
-            <p style="font-size: 17px; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-                By <a href="#steps" style="color: var(--accent); text-decoration: underline; transition: opacity 0.2s;">Module 3</a>, your app will be <strong style="color: var(--accent);">submitted to the App Store</strong> and ready for users to test. Most apps get approved within 24-48 hours.
-            </p>
-        </div>
+        <div class="scroll-indicator">Scroll</div>
     </section>
 
     <section class="pain-points">
         <div class="container">
             <p class="pain-question">You want to build an app with AI. But the costs don't make sense.</p>
             
-            <p class="pain-text">You've seen Replit. Lovable. Bolt. They make it look easy - just describe what you want and watch the AI build it.</p>
-            
-            <p class="pain-text">But then you dig into the pricing. $20/month sounds fine. Then you see "credits" and "effort-based pricing" and users reporting $100-300/month in overages. <a href="https://www.theregister.com/2025/09/18/replit_agent3_pricing/" target="_blank" style="color: var(--accent);">One guy spent $360 in a single day.</a></p>
+            <p class="pain-text">You've seen Replit. Lovable. Bolt. They make it look easy. But then you dig into the pricing - "credits" and "effort-based pricing" and users reporting $100-300/month in overages. <a href="https://www.theregister.com/2025/09/18/replit_agent3_pricing/" target="_blank" style="color: var(--accent);">One guy spent $360 in a single day.</a></p>
 
             <div class="highlight-box">
                 <p><strong>Something felt off.</strong> So I looked into it.</p>
-                <p style="margin-top: 16px;">Turns out these platforms are just wrappers around Claude and GPT - the same AI you can access directly for a flat $20/month. No credits. No surprise bills. No paying when the AI gets stuck in a loop.</p>
+                <p style="margin-top: 16px;">Turns out these platforms are just wrappers around Claude and GPT - the same AI you can access directly for a predictable monthly subscription. No credits. No surprise bills. No paying when the AI gets stuck in a loop.</p>
             </div>
 
-            <p class="pain-text">Look, Replit and Lovable are genuinely great for some things - testing an idea quickly, no setup, no learning curve. If you want a prototype in 30 minutes to see if something's worth building, they're perfect for that. But if you're building something real - something you'll maintain, update, and put on the App Store - you'll pay 5-10x more for worse results.</p>
+            <p class="pain-text">I built LifeCompass this way - 30+ screens, 360+ components, a full AWS backend. If I'd built that on Replit? Probably thousands. Instead, I paid a predictable subscription and kept building.</p>
 
-            <p class="pain-text">And honestly? I'm not even a professional developer. No CS degree. My app has maybe 50 downloads total. I don't even know how to code - I built my app entirely with AI.</p>
+            <p class="pain-text">And honestly? I'm not a developer. No CS degree. I don't know how to code - I built my app entirely with AI. But I spent 8 months figuring out what actually works, so you don't have to.</p>
 
-            <p class="pain-text"><strong>But I can build apps for a fraction of what these platforms charge.</strong> I spent 8 months learning VSCode and Claude Code, hitting every wall, figuring out what actually works - so you don't have to.</p>
-
-            <p class="pain-text">This course is that direct path.</p>
+            <p class="pain-text"><strong>This course is that direct path.</strong></p>
         </div>
     </section>
 
     <section class="cta-section">
         <div class="container">
             <h2>Ready to build your app the smart way?</h2>
-            <p>Skip the overpriced platforms. Learn to build with Claude Code for $20/month.</p>
+            <p>Skip the overpriced platforms. Learn to build with Claude Code for a predictable monthly cost.</p>
             <a href="course.html" class="cta-button">Show Me How</a>
         </div>
     </section>
@@ -791,19 +1032,76 @@
                     <h2>Hey, I'm Ryan</h2>
                     
                     <p>I'm not a developer. No CS degree. I just wanted to build an app.</p>
-                    <p>When I started looking into AI tools, I saw everyone talking about Replit and Lovable. But when I dug into the pricing - the credits, the overages, the "effort-based" charges - I knew there had to be a better way. These platforms are just wrappers around the same AI I could use directly.</p>
-                    <p>So I learned Claude Code and VSCode instead. Built my own app called LifeCompass, figured out the deployment process, and got it on the App Store - all for a flat $20/month while others were spending $100-300.</p>
+                    <p>So I learned Claude Code and VSCode, built LifeCompass, and got it on the App Store. Not a tutorial project - a real production app with 30+ screens, a full AWS backend, and monetization fully wired up (subscriptions and in-app purchases).</p>
                     <p>This course is free because the information should be free. You shouldn't have to pay to learn that you don't have to overpay.</p>
                     
                     <div class="credentials">
                         <span class="credential-tag">📱 App on iOS App Store</span>
-                        <span class="credential-tag">⚛️ React Native + Expo</span>
-                        <span class="credential-tag">🔐 RevenueCat Integration</span>
+                        <span class="credential-tag">⚛️ React Native + Expo (360+ components)</span>
+                        <span class="credential-tag">☁️ AWS Lambda + DynamoDB backend</span>
+                        <span class="credential-tag">🔐 RevenueCat subscriptions</span>
+                    </div>
+
+                    <!-- Proof Badge -->
+                    <div class="proof-badge" onclick="openProofModal()">
+                        <div class="proof-badge-icon">✓</div>
+                        <div class="proof-badge-text">
+                            <strong>Verified: Real App, Real App Store</strong>
+                            <span>See what I actually built →</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Proof Modal -->
+    <div id="proofModal" class="proof-modal" onclick="closeProofModal(event)">
+        <div class="proof-modal-content" onclick="event.stopPropagation()">
+            <button class="proof-modal-close" onclick="closeProofModal()">&times;</button>
+            <h3>LifeCompass - What I Built</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">This is a real production app, not a tutorial project. Here's what's under the hood:</p>
+            
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <span class="proof-stat-number">30+</span>
+                    <span class="proof-stat-label">Screens</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-stat-number">360+</span>
+                    <span class="proof-stat-label">Components</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-stat-number">10</span>
+                    <span class="proof-stat-label">Lambda Functions</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-stat-number">8</span>
+                    <span class="proof-stat-label">Database Tables</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-stat-number">11</span>
+                    <span class="proof-stat-label">API Endpoints</span>
+                </div>
+            </div>
+
+            <div class="proof-features">
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>AI-powered goal coaching with real-time chat</li>
+                    <li>Subscription management via RevenueCat</li>
+                    <li>Apple Sign-In authentication</li>
+                    <li>Push notifications</li>
+                    <li>Offline support with data sync</li>
+                    <li>Admin dashboard & Discord bot integration</li>
+                </ul>
+            </div>
+
+            <a href="https://apps.apple.com/au/app/lifecompass/id6749040243" target="_blank" class="proof-appstore-link">
+                View on App Store →
+            </a>
+        </div>
+    </div>
 
     <section class="requirements">
         <div class="container">
@@ -882,5 +1180,26 @@
             <p>Built by <a href="#about">Ryan</a> · Have questions? <a href="https://www.linkedin.com/in/ryan-novinc-126aa2194/" target="_blank">Get in touch</a></p>
         </div>
     </footer>
+
+    <script>
+        function openProofModal() {
+            document.getElementById('proofModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProofModal(event) {
+            if (!event || event.target === event.currentTarget) {
+                document.getElementById('proofModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeProofModal();
+            }
+        });
+    </script>
 </body>
 </html>
